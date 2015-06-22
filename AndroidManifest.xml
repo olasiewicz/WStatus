@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.wojtek.wstatus"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="19" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+       
+        <activity
+            android:name=".WMainActivity" 
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+         <activity
+              android:name=".WStatusActivity" 
+              android:label="@string/update_status">
+        </activity>
+        <activity
+            android:name=".WSettingsActivity"
+            android:label="@string/title_activity_settings" >
+            <intent-filter>
+                <action android:name="com.wojtek.settings" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity 
+            android:name=".DetailsActivity" >
+        </activity>
+
+        <service android:name=".WRefreshService" >
+            <intent-filter>
+                <action android:name="com.wojtek.refresh" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+
+        <provider
+            android:name=".WStatusProvider"
+            android:authorities="com.wojtek.wstatus.WStatusProvider" >
+        </provider>
+
+        <receiver android:name=".WSystemBootReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>  
+            <intent-filter >
+                <action android:name="com.wojtek.android.UPDATED_INTERVAL" />
+            </intent-filter>
+        </receiver>
+        
+        <receiver 
+            android:name=".WNotificationReceiver">
+            <intent-filter >
+                <action android:name="com.wojtek.wstatus.NEW_NOT"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </receiver>
+        
+       <receiver
+            android:name="com.wojtek.wstatus.MyWidget"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.wojtek.wstatus.NEW_NOT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_look" />
+        </receiver>
+        
+    </application>
+
+</manifest>

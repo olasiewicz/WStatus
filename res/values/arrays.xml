@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string-array name="interval_names" >
+        
+        <item>One minute</item>
+        <item>Fifteen minutes</item>
+        <item>Half an hour</item>
+        <item>An hour</item>
+        <item>Never</item>
+        
+    </string-array>
+    
+    <string-array name="interval_values">
+        
+        <item>60000</item>
+        <item>900000</item>
+        <item>1800000</item>
+        <item>3600000</item>
+        <item>0</item>
+        
+    </string-array>
+    
+</resources>
